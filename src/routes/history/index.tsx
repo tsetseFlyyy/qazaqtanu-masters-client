@@ -1,9 +1,9 @@
 import Banner from "@/components/ui/custom/banner/Banner";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-export const Route = createFileRoute("/history")({
+export const Route = createFileRoute("/history/")({
   component: RouteComponent,
 });
 
@@ -14,48 +14,56 @@ function RouteComponent() {
 
   const events = [
     {
+      id: 1,
       title_ru: "Битва при Чирик-Рабате",
       title_kk: "Ширик-Рабат шайқасы",
       time_ru: "IV век до н.э.",
       time_kk: "Б. з. дейінгі IV ғасыр",
     },
     {
+      id: 2,
       title_ru: "Битва при Бугуу (Бухтарме)",
       title_kk: "Бұғу (Бұқтырма) шайқасы",
       time_ru: "603 год",
       time_kk: "603 жыл",
     },
     {
+      id: 3,
       title_ru: "Захват Таразa",
       title_kk: "Тараздың жаулап алынуы",
       time_ru: "999 год",
       time_kk: "999 жыл",
     },
     {
+      id: 4,
       title_ru: "Битва при Айгыржар",
       title_kk: "Айғыржар шайқасы",
       time_ru: "1365 год",
       time_kk: "1365 жыл",
     },
     {
+      id: 5,
       title_ru: "Битва при Орбулаке",
       title_kk: "Орбұлақ шайқасы",
       time_ru: "1643 год",
       time_kk: "1643 жыл",
     },
     {
+      id: 6,
       title_ru: "Восстание Сырыма Датова",
       title_kk: "Сырым Датұлы көтерілісі",
       time_ru: "1783–1797 гг.",
       time_kk: "1783–1797 жж.",
     },
     {
+      id: 7,
       title_ru: "«Алаш» и создание «Алаш Орды»",
       title_kk: "«Алаш» және «Алаш Орда» құрылуы",
       time_ru: "1917 год",
       time_kk: "1917 жыл",
     },
     {
+      id: 8,
       title_ru: "Провозглашение независимости",
       title_kk: "Тәуелсіздіктің жариялануы",
       time_ru: "16 декабря 1991 года",
@@ -65,60 +73,70 @@ function RouteComponent() {
 
   const personalities = [
     {
+      id: 1,
       title_ru: "Ширак (саки)",
       title_kk: "Шырақ (сақтар)",
       time_ru: "VI век до н.э.",
       time_kk: "Б. з. дейінгі VI ғасыр",
     },
     {
+      id: 2,
       title_ru: "Иштеми-каган",
       title_kk: "Иштеми қаған",
       time_ru: "умер в 576 году",
       time_kk: "576 жылы қайтыс болған",
     },
     {
+      id: 3,
       title_ru: "Юсуф Баласагуни",
       title_kk: "Жүсіп Баласағұни",
       time_ru: "ок. 1018–1077 гг.",
       time_kk: "шамамен 1018–1077 жж.",
     },
     {
-      title_ru: "Жошы-хан",
+      id: 4,
+      title_ru: "Джучи хан",
       title_kk: "Жошы хан",
       time_ru: "ок. 1187–1227 гг.",
       time_kk: "шамамен 1187–1227 жж.",
     },
     {
+      id: 5,
       title_ru: "Касым-хан",
       title_kk: "Қасым хан",
       time_ru: "ок. 1445–1521 гг.",
       time_kk: "шамамен 1445–1521 жж.",
     },
     {
-      title_ru: "Тауке-хан",
+      id: 6,
+      title_ru: "Тауке хан",
       title_kk: "Тәуке хан",
       time_ru: "ок. 1635–1718 гг.",
       time_kk: "шамамен 1635–1718 жж.",
     },
     {
-      title_ru: "Абылай-хан",
+      id: 7,
+      title_ru: "Абылай хан",
       title_kk: "Абылай хан",
       time_ru: "1711–1781 гг.",
       time_kk: "1711–1781 жж.",
     },
     {
+      id: 8,
       title_ru: "Кенесары Касымов",
       title_kk: "Кенесары Қасымұлы",
       time_ru: "1802–1847 гг.",
       time_kk: "1802–1847 жж.",
     },
     {
+      id: 9,
       title_ru: "Ахмет Байтурсынов",
       title_kk: "Ахмет Байтұрсынұлы",
       time_ru: "1872–1937 гг.",
       time_kk: "1872–1937 жж.",
     },
     {
+      id: 10,
       title_ru: "Динмухамед Кунаев",
       title_kk: "Дінмұхамед Қонаев",
       time_ru: "1912–1993 гг.",
@@ -289,21 +307,23 @@ function RouteComponent() {
         </h2>
         <div className="grid grid-cols-4 pt-[174px] mx-10 gap-[18px]">
           {events.map((event, index) => (
-            <div className="flex flex-col items-center" key={index}>
-              <img
-                width={460}
-                height={288}
-                className="w-[460px] h-[288px]"
-                src={`/images/event_${index + 1}.png`}
-                alt="event__1"
-              />
-              <span className="text-secondary text-[30px] text-center mt-[16px]">
-                {i18n.language === "ru" ? event.title_ru : event.title_kk}
-              </span>
-              <span className="text-secondary text-[26px] text-center">
-                {i18n.language === "ru" ? event.time_ru : event.time_kk}
-              </span>
-            </div>
+            <Link to={`/history/events/${event.id}`}>
+              <div className="flex flex-col items-center" key={index}>
+                <img
+                  width={460}
+                  height={288}
+                  className="w-[460px] h-[288px]"
+                  src={`/images/event_${index + 1}.png`}
+                  alt="event__1"
+                />
+                <span className="text-secondary text-[30px] text-center mt-[16px]">
+                  {i18n.language === "ru" ? event.title_ru : event.title_kk}
+                </span>
+                <span className="text-secondary text-[26px] text-center">
+                  {i18n.language === "ru" ? event.time_ru : event.time_kk}
+                </span>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -313,20 +333,22 @@ function RouteComponent() {
         </h2>
         <div className="grid grid-cols-5 pt-[174px] mx-10 gap-[42px]">
           {personalities.map((person, index) => (
-            <div className="flex flex-col items-center" key={index}>
-              <img
-                width={265}
-                height={347}
-                src={`/images/person_${index + 1}.png`}
-                alt="person"
-              />
-              <span className="text-center text-secondary text-[30px] mt-[20px]">
-                {i18n.language === "ru" ? person.title_ru : person.title_kk}
-              </span>
-              <span className="text-center text-secondary text-[26px]">
-                {i18n.language === "ru" ? person.time_ru : person.time_kk}
-              </span>
-            </div>
+            <Link to={`/history/persons/${person.id}`}>
+              <div className="flex flex-col items-center" key={index}>
+                <img
+                  width={265}
+                  height={347}
+                  src={`/images/person_${index + 1}.png`}
+                  alt="person"
+                />
+                <span className="text-center text-secondary text-[30px] mt-[20px]">
+                  {i18n.language === "ru" ? person.title_ru : person.title_kk}
+                </span>
+                <span className="text-center text-secondary text-[26px]">
+                  {i18n.language === "ru" ? person.time_ru : person.time_kk}
+                </span>
+              </div>
+            </Link>
           ))}
         </div>
       </section>

@@ -12,10 +12,14 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as SignInImport } from './routes/sign-in'
-import { Route as NaturetourismImport } from './routes/nature_tourism'
-import { Route as HistoryImport } from './routes/history'
-import { Route as EthnogenesisImport } from './routes/ethnogenesis'
 import { Route as IndexImport } from './routes/index'
+import { Route as NaturetourismIndexImport } from './routes/nature_tourism/index'
+import { Route as HistoryIndexImport } from './routes/history/index'
+import { Route as EthnogenesisIndexImport } from './routes/ethnogenesis/index'
+import { Route as NaturetourismPlacesPlaceImport } from './routes/nature_tourism/places/$place'
+import { Route as HistoryPersonsPersonImport } from './routes/history/persons/$person'
+import { Route as HistoryEventsEventImport } from './routes/history/events/$event'
+import { Route as EthnogenesisTribesTribeImport } from './routes/ethnogenesis/tribes/$tribe'
 
 // Create/Update Routes
 
@@ -25,27 +29,51 @@ const SignInRoute = SignInImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const NaturetourismRoute = NaturetourismImport.update({
-  id: '/nature_tourism',
-  path: '/nature_tourism',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const HistoryRoute = HistoryImport.update({
-  id: '/history',
-  path: '/history',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const EthnogenesisRoute = EthnogenesisImport.update({
-  id: '/ethnogenesis',
-  path: '/ethnogenesis',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const NaturetourismIndexRoute = NaturetourismIndexImport.update({
+  id: '/nature_tourism/',
+  path: '/nature_tourism/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const HistoryIndexRoute = HistoryIndexImport.update({
+  id: '/history/',
+  path: '/history/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const EthnogenesisIndexRoute = EthnogenesisIndexImport.update({
+  id: '/ethnogenesis/',
+  path: '/ethnogenesis/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const NaturetourismPlacesPlaceRoute = NaturetourismPlacesPlaceImport.update({
+  id: '/nature_tourism/places/$place',
+  path: '/nature_tourism/places/$place',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const HistoryPersonsPersonRoute = HistoryPersonsPersonImport.update({
+  id: '/history/persons/$person',
+  path: '/history/persons/$person',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const HistoryEventsEventRoute = HistoryEventsEventImport.update({
+  id: '/history/events/$event',
+  path: '/history/events/$event',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const EthnogenesisTribesTribeRoute = EthnogenesisTribesTribeImport.update({
+  id: '/ethnogenesis/tribes/$tribe',
+  path: '/ethnogenesis/tribes/$tribe',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,32 +88,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/ethnogenesis': {
-      id: '/ethnogenesis'
-      path: '/ethnogenesis'
-      fullPath: '/ethnogenesis'
-      preLoaderRoute: typeof EthnogenesisImport
-      parentRoute: typeof rootRoute
-    }
-    '/history': {
-      id: '/history'
-      path: '/history'
-      fullPath: '/history'
-      preLoaderRoute: typeof HistoryImport
-      parentRoute: typeof rootRoute
-    }
-    '/nature_tourism': {
-      id: '/nature_tourism'
-      path: '/nature_tourism'
-      fullPath: '/nature_tourism'
-      preLoaderRoute: typeof NaturetourismImport
-      parentRoute: typeof rootRoute
-    }
     '/sign-in': {
       id: '/sign-in'
       path: '/sign-in'
       fullPath: '/sign-in'
       preLoaderRoute: typeof SignInImport
+      parentRoute: typeof rootRoute
+    }
+    '/ethnogenesis/': {
+      id: '/ethnogenesis/'
+      path: '/ethnogenesis'
+      fullPath: '/ethnogenesis'
+      preLoaderRoute: typeof EthnogenesisIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/history/': {
+      id: '/history/'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/nature_tourism/': {
+      id: '/nature_tourism/'
+      path: '/nature_tourism'
+      fullPath: '/nature_tourism'
+      preLoaderRoute: typeof NaturetourismIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/ethnogenesis/tribes/$tribe': {
+      id: '/ethnogenesis/tribes/$tribe'
+      path: '/ethnogenesis/tribes/$tribe'
+      fullPath: '/ethnogenesis/tribes/$tribe'
+      preLoaderRoute: typeof EthnogenesisTribesTribeImport
+      parentRoute: typeof rootRoute
+    }
+    '/history/events/$event': {
+      id: '/history/events/$event'
+      path: '/history/events/$event'
+      fullPath: '/history/events/$event'
+      preLoaderRoute: typeof HistoryEventsEventImport
+      parentRoute: typeof rootRoute
+    }
+    '/history/persons/$person': {
+      id: '/history/persons/$person'
+      path: '/history/persons/$person'
+      fullPath: '/history/persons/$person'
+      preLoaderRoute: typeof HistoryPersonsPersonImport
+      parentRoute: typeof rootRoute
+    }
+    '/nature_tourism/places/$place': {
+      id: '/nature_tourism/places/$place'
+      path: '/nature_tourism/places/$place'
+      fullPath: '/nature_tourism/places/$place'
+      preLoaderRoute: typeof NaturetourismPlacesPlaceImport
       parentRoute: typeof rootRoute
     }
   }
@@ -95,58 +151,100 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/ethnogenesis': typeof EthnogenesisRoute
-  '/history': typeof HistoryRoute
-  '/nature_tourism': typeof NaturetourismRoute
   '/sign-in': typeof SignInRoute
+  '/ethnogenesis': typeof EthnogenesisIndexRoute
+  '/history': typeof HistoryIndexRoute
+  '/nature_tourism': typeof NaturetourismIndexRoute
+  '/ethnogenesis/tribes/$tribe': typeof EthnogenesisTribesTribeRoute
+  '/history/events/$event': typeof HistoryEventsEventRoute
+  '/history/persons/$person': typeof HistoryPersonsPersonRoute
+  '/nature_tourism/places/$place': typeof NaturetourismPlacesPlaceRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/ethnogenesis': typeof EthnogenesisRoute
-  '/history': typeof HistoryRoute
-  '/nature_tourism': typeof NaturetourismRoute
   '/sign-in': typeof SignInRoute
+  '/ethnogenesis': typeof EthnogenesisIndexRoute
+  '/history': typeof HistoryIndexRoute
+  '/nature_tourism': typeof NaturetourismIndexRoute
+  '/ethnogenesis/tribes/$tribe': typeof EthnogenesisTribesTribeRoute
+  '/history/events/$event': typeof HistoryEventsEventRoute
+  '/history/persons/$person': typeof HistoryPersonsPersonRoute
+  '/nature_tourism/places/$place': typeof NaturetourismPlacesPlaceRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/ethnogenesis': typeof EthnogenesisRoute
-  '/history': typeof HistoryRoute
-  '/nature_tourism': typeof NaturetourismRoute
   '/sign-in': typeof SignInRoute
+  '/ethnogenesis/': typeof EthnogenesisIndexRoute
+  '/history/': typeof HistoryIndexRoute
+  '/nature_tourism/': typeof NaturetourismIndexRoute
+  '/ethnogenesis/tribes/$tribe': typeof EthnogenesisTribesTribeRoute
+  '/history/events/$event': typeof HistoryEventsEventRoute
+  '/history/persons/$person': typeof HistoryPersonsPersonRoute
+  '/nature_tourism/places/$place': typeof NaturetourismPlacesPlaceRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ethnogenesis' | '/history' | '/nature_tourism' | '/sign-in'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ethnogenesis' | '/history' | '/nature_tourism' | '/sign-in'
-  id:
-    | '__root__'
+  fullPaths:
     | '/'
+    | '/sign-in'
     | '/ethnogenesis'
     | '/history'
     | '/nature_tourism'
+    | '/ethnogenesis/tribes/$tribe'
+    | '/history/events/$event'
+    | '/history/persons/$person'
+    | '/nature_tourism/places/$place'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
     | '/sign-in'
+    | '/ethnogenesis'
+    | '/history'
+    | '/nature_tourism'
+    | '/ethnogenesis/tribes/$tribe'
+    | '/history/events/$event'
+    | '/history/persons/$person'
+    | '/nature_tourism/places/$place'
+  id:
+    | '__root__'
+    | '/'
+    | '/sign-in'
+    | '/ethnogenesis/'
+    | '/history/'
+    | '/nature_tourism/'
+    | '/ethnogenesis/tribes/$tribe'
+    | '/history/events/$event'
+    | '/history/persons/$person'
+    | '/nature_tourism/places/$place'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  EthnogenesisRoute: typeof EthnogenesisRoute
-  HistoryRoute: typeof HistoryRoute
-  NaturetourismRoute: typeof NaturetourismRoute
   SignInRoute: typeof SignInRoute
+  EthnogenesisIndexRoute: typeof EthnogenesisIndexRoute
+  HistoryIndexRoute: typeof HistoryIndexRoute
+  NaturetourismIndexRoute: typeof NaturetourismIndexRoute
+  EthnogenesisTribesTribeRoute: typeof EthnogenesisTribesTribeRoute
+  HistoryEventsEventRoute: typeof HistoryEventsEventRoute
+  HistoryPersonsPersonRoute: typeof HistoryPersonsPersonRoute
+  NaturetourismPlacesPlaceRoute: typeof NaturetourismPlacesPlaceRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  EthnogenesisRoute: EthnogenesisRoute,
-  HistoryRoute: HistoryRoute,
-  NaturetourismRoute: NaturetourismRoute,
   SignInRoute: SignInRoute,
+  EthnogenesisIndexRoute: EthnogenesisIndexRoute,
+  HistoryIndexRoute: HistoryIndexRoute,
+  NaturetourismIndexRoute: NaturetourismIndexRoute,
+  EthnogenesisTribesTribeRoute: EthnogenesisTribesTribeRoute,
+  HistoryEventsEventRoute: HistoryEventsEventRoute,
+  HistoryPersonsPersonRoute: HistoryPersonsPersonRoute,
+  NaturetourismPlacesPlaceRoute: NaturetourismPlacesPlaceRoute,
 }
 
 export const routeTree = rootRoute
@@ -160,26 +258,42 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/ethnogenesis",
-        "/history",
-        "/nature_tourism",
-        "/sign-in"
+        "/sign-in",
+        "/ethnogenesis/",
+        "/history/",
+        "/nature_tourism/",
+        "/ethnogenesis/tribes/$tribe",
+        "/history/events/$event",
+        "/history/persons/$person",
+        "/nature_tourism/places/$place"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/ethnogenesis": {
-      "filePath": "ethnogenesis.tsx"
-    },
-    "/history": {
-      "filePath": "history.tsx"
-    },
-    "/nature_tourism": {
-      "filePath": "nature_tourism.tsx"
-    },
     "/sign-in": {
       "filePath": "sign-in.tsx"
+    },
+    "/ethnogenesis/": {
+      "filePath": "ethnogenesis/index.tsx"
+    },
+    "/history/": {
+      "filePath": "history/index.tsx"
+    },
+    "/nature_tourism/": {
+      "filePath": "nature_tourism/index.tsx"
+    },
+    "/ethnogenesis/tribes/$tribe": {
+      "filePath": "ethnogenesis/tribes/$tribe.tsx"
+    },
+    "/history/events/$event": {
+      "filePath": "history/events/$event.tsx"
+    },
+    "/history/persons/$person": {
+      "filePath": "history/persons/$person.tsx"
+    },
+    "/nature_tourism/places/$place": {
+      "filePath": "nature_tourism/places/$place.tsx"
     }
   }
 }

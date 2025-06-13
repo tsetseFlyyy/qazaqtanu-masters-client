@@ -78,5 +78,5 @@ header {
 }
 
 .react-simple-image-viewer__modal {
-  z-index: 2;
+  z-index: 15 !important;
 }

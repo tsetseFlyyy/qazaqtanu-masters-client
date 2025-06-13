@@ -42,8 +42,8 @@ const Banner: React.FC<Props> = ({ section }) => {
       <p className="text text-secondary mt-12 mb-36 text-[30px] max-w-5xl">
         {t(`${section}.description`)}
       </p>
-      <button onClick={() => handleLanguageChange("kk")}>Қазақша</button>
-      <button onClick={() => handleLanguageChange("ru")}>Русский</button>
+      {/* <button onClick={() => handleLanguageChange("kk")}>Қазақша</button>
+      <button onClick={() => handleLanguageChange("ru")}>Русский</button> */}
     </section>
   );
 };

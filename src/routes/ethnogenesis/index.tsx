@@ -1,11 +1,29 @@
 import Banner from "@/components/ui/custom/banner/Banner";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-export const Route = createFileRoute("/ethnogenesis")({
+export const Route = createFileRoute("/ethnogenesis/")({
   component: RouteComponent,
 });
+
+const tribes = {
+  senior: [
+    "shapyrashty",
+    "ysty",
+    "oshakty",
+    "alban",
+    "suan",
+    "dulat",
+    "kanly",
+    "shanyshkyly",
+    "zhalayir",
+    "syrgeli",
+    "shaksham",
+  ],
+  middle: ["argyn", "naiman", "konyrat", "kypshak", "kerei", "uak"],
+  junior: ["karakesek", "bayuly", "zhetiru"],
+};
 
 function RouteComponent() {
   const { t, i18n } = useTranslation();
@@ -19,7 +37,6 @@ function RouteComponent() {
     }
   }, [i18n.language]);
 
-  console.log(i18n.language);
 
   return (
     <main className="ethnogenesis">
@@ -65,39 +82,13 @@ function RouteComponent() {
               </span>
               <div className="ml-[50px] mt-[26px] bg-secondary w-[144px] h-[144px] rounded-[50%]" />
               <div className="flex flex-col w-fit items-center gap-5 ml-[35px] mt-[42px]">
-                <span className="text-secondary text-[32px] text-center">
-                  Шапырашты
-                </span>
-                <span className="text-secondary text-[32px] text-center">
-                  Ысты
-                </span>
-                <span className="text-secondary text-[32px] text-center">
-                  Ошақты
-                </span>
-                <span className="text-secondary text-[32px] text-center">
-                  Албан
-                </span>
-                <span className="text-secondary text-[32px] text-center">
-                  Суан
-                </span>
-                <span className="text-secondary text-[32px] text-center">
-                  Дулат
-                </span>
-                <span className="text-secondary text-[32px] text-center">
-                  Қаңлы
-                </span>
-                <span className="text-secondary text-[32px] text-center">
-                  Шанышқылы
-                </span>
-                <span className="text-secondary text-[32px] text-center">
-                  Жалайыр
-                </span>
-                <span className="text-secondary text-[32px] text-center">
-                  Сіргелі
-                </span>
-                <span className="text-secondary text-[32px] text-center">
-                  Шақшам
-                </span>
+                {tribes.senior.map((tribe) => (
+                  <Link to={`/ethnogenesis/tribes/${tribe}`}>
+                    <span className="text-secondary text-[32px] text-center">
+                      {t(`ethnogenesis_section.tribes.${tribe}`)}
+                    </span>
+                  </Link>
+                ))}
               </div>
             </div>
             <div className="flex flex-col items-center">
@@ -109,25 +100,14 @@ function RouteComponent() {
                 {t("ethnogenesis_section.middle")}
               </span>
               <div className="bg-secondary w-[144px] h-[144px] rounded-[50%]" />
-              <div className="flex flex-col gap-5 mt-[42px]">
-                <span className="text-secondary text-center text-[32px]">
-                  Арғын
-                </span>
-                <span className="text-secondary text-center text-[32px]">
-                  Найман
-                </span>
-                <span className="text-secondary text-center text-[32px]">
-                  Қоңырат
-                </span>
-                <span className="text-secondary text-center text-[32px]">
-                  Қыпшақ
-                </span>
-                <span className="text-secondary text-center text-[32px]">
-                  Керей
-                </span>
-                <span className="text-secondary text-center text-[32px]">
-                  Уақ
-                </span>
+              <div className="flex flex-col gap-5 mt-[42px] items-center">
+                {tribes.middle.map((tribe) => (
+                  <Link to={`/ethnogenesis/tribes/${tribe}`}>
+                    <span className="text-secondary text-[32px] text-center">
+                      {t(`ethnogenesis_section.tribes.${tribe}`)}
+                    </span>
+                  </Link>
+                ))}
               </div>
             </div>
             <div className="mt-[50px]">
@@ -139,16 +119,14 @@ function RouteComponent() {
                 {t("ethnogenesis_section.junior")}
               </span>
               <div className="ml-[250px] mt-[26px] bg-secondary w-[144px] h-[144px] rounded-[50%]" />
-              <div className="flex flex-col w-fit items-center gap-5 ml-[190px] mt-[42px]">
-                <span className="text-secondary text-[32px] text-center whitespace-nowrap">
-                  Қайырбай-Қаракесек
-                </span>
-                <span className="text-secondary text-[32px] text-center">
-                  Байұлы
-                </span>
-                <span className="text-secondary text-[32px] text-center">
-                  Жетіру
-                </span>
+              <div className="flex flex-col w-fit items-center gap-5 ml-[258px] mt-[42px]">
+                {tribes.junior.map((tribe) => (
+                  <Link to={`/ethnogenesis/tribes/${tribe}`}>
+                    <span className="text-secondary text-[32px] text-center">
+                      {t(`ethnogenesis_section.tribes.${tribe}`)}
+                    </span>
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
